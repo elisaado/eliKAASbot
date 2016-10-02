@@ -19,7 +19,7 @@ import logging
 import telegram
 
 botName = "eliKAAS"
-botNameDownie = "elikaas"
+botNameDownie = botName.lower()
 ownerId = "107574851"
 
 # Enable logging
@@ -78,7 +78,7 @@ def error(bot, update, error):
 
 def main():
 	# Create the EventHandler and pass it your bot's token.
-	updater = Updater("269322124:AAFNezyol2t6ze36iSv3hgyV1cdf4aFEKSo")
+	updater = Updater("269322124:****")
 
 	# Get the dispatcher to register handlers
 	dp = updater.dispatcher
