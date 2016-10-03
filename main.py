@@ -43,23 +43,23 @@ def help(bot, update):
 
 def mainMessagesHandler(bot, update):
 	
-	if ("haha" in update.message.text or "HAHA" in update.message.text):
+	if "haha" in update.message.text or "HAHA" in update.message.text :
 			update.message.reply_text("hehehehe")
 
-	if (botName in update.message.text or botNameDownie in update.message.text):
-		if ("top kek" in update.message.text):
+	if botName in update.message.text or botNameDownie in update.message.text :
+		if "top kek" in update.message.text :
 			update.message.reply_text("ERROR: line 14:23; 'top kek' is null! **EXITING!**")
 		
-		elif ("hey" in update.message.text):
+		elif "hey" in update.message.text :
 			update.message.reply_text("Hey :) How are you?")
 
-		elif ("Hey" in update.message.text):
+		elif "Hey" in update.message.text :
 			update.message.reply_text("Hey :) How are you?")
 		
-		elif ("hello" in update.message.text or "Hello" in update.message.text):
+		elif "hello" in update.message.text or "Hello" in update.message.text :
 			update.message.reply_text("Hey :) How are you?")
 		
-		elif (botName == update.message.text or botNameDownie == update.message.text) :
+		elif botName == update.message.text or botNameDownie == update.message.text :
 			update.message.reply_text("Hey! For a list of things you can say to me type '/help'")
 		
 		else :
@@ -67,8 +67,8 @@ def mainMessagesHandler(bot, update):
 
 For a list of things you can say to me type '/help'""")
 
-	elif ("we are all fucked" in update.message.text) :
-		update.message.reply_text("yes")
+	elif "we are all fucked" in update.message.text :
+		update.message.reply_text("yes.")
 
 
 def error(bot, update, error):
