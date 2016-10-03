@@ -8,6 +8,7 @@ import telegram
 botName = "eliKAAS"
 botNameDownie = botName.lower()
 ownerId = "107574851"
+token = input('Token: ')
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -70,7 +71,7 @@ def error(bot, update, error):
 
 def main():
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater("269322124:**KEK HOW DARE YOU**")
+    updater = Updater(token)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
