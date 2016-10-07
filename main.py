@@ -4,11 +4,15 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
 import telegram
+import clever
 
 botName = "eliKAAS"
 botNameDownie = botName.lower()
 ownerId = "107574851"
 token = input('Token: ')
+cbtoken = input('CleverBot Token: ')
+cbuser = input('CleverBot User Token: ')
+client = clever.CleverBot(user=cbuser, key=cbtoken)
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -51,12 +55,10 @@ def mainMessagesHandler(bot, update):
         # `update.message.text == botName`. It's your code so, YMMV.
         elif botName == update.message.text or botNameDownie == update.message.text:
             update.message.reply_text(
-                "Hey! For a list of things you can say to me type '/help'")
+                "Hey! For a list of things you can say to me type /help")
 
         else:
-            update.message.reply_text("""I don't understand! 😢
-
-For a list of things you can say to me type '/help'""")
+            update.message.reply_text(client.query(update.message.text))
 
     elif "we are all fucked" in update.message.text:
         update.message.reply_text("yes.")
