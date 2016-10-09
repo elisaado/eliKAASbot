@@ -42,23 +42,13 @@ def mainMessagesHandler(bot, update):
             update.message.reply_text(
                 "ERROR: line 14:23; 'top kek' is null! **EXITING!**")
 
-        elif "hey" in update.message.text:
-            update.message.reply_text("Hey :) How are you?")
-
-        elif "Hey" in update.message.text:
-            update.message.reply_text("Hey :) How are you?")
-
-        elif "hello" in update.message.text or "Hello" in update.message.text:
-            update.message.reply_text("Hey :) How are you?")
-
-        # For some reason, to me it seems more logical if you changed this to
-        # `update.message.text == botName`. It's your code so, YMMV.
-        elif botName == update.message.text or botNameDownie == update.message.text:
+        elif update.message.text == botName or update.message.text == botNameDownie:
             update.message.reply_text(
                 "Hey! For a list of things you can say to me type /help")
 
         else:
             update.message.reply_text(client.query(update.message.text))
+
 
     elif "we are all fucked" in update.message.text:
         update.message.reply_text("yes.")
