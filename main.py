@@ -33,10 +33,12 @@ def help(bot, update):
 
 def mainMessagesHandler(bot, update):
 
+    print(update)
+
     if "haha" in update.message.text or "HAHA" in update.message.text:
         update.message.reply_text("hehehehe")
 
-    if botName in update.message.text or botNameDownie in update.message.text:
+    if botName in update.message.text or botNameDownie in update.message.text or update['message']['chat']['type'] == 'private':
         if "top kek" in update.message.text:
             update.message.reply_text(
                 "ERROR: line 14:23; 'top kek' is null! **EXITING!**")
