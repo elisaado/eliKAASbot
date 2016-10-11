@@ -4,15 +4,14 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
 import telegram
-import clever
+from cleverbot import Cleverbot
 
+cb = Cleverbot()
 botName = "eliKAAS"
 botNameDownie = botName.lower()
 ownerId = "107574851"
 token = input('Token: ')
-cbtoken = input('CleverBot Token: ')
-cbuser = input('CleverBot User Token: ')
-client = clever.CleverBot(user=cbuser, key=cbtoken)
+
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -23,7 +22,7 @@ logger = logging.getLogger(__name__)
 # Define a few command handlers. These usually take the two arguments bot and
 # update. Error handlers also receive the raised TelegramError object in error.
 def start(bot, update):
-    update.message.reply_text('Hi!')
+    update.message.reply_text('Hi, I'm eliKAASbot! I'm made by @eliKAAS')
 
 
 def help(bot, update):
@@ -44,10 +43,10 @@ def mainMessagesHandler(bot, update):
 
         elif update.message.text == botName or update.message.text == botNameDownie:
             update.message.reply_text(
-                "Hey! For a list of things you can say to me type /help")
+                "Hey I'm eliKAASbot, a bot made by @eliKAAS! For a list of things you can say to me type /help")
 
         else:
-            update.message.reply_text(client.query(update.message.text))
+            update.message.reply_text(cb.ask(update.message.text))
 
 
     elif "we are all fucked" in update.message.text:
