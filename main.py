@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from uuid import uuid4
+import re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
 import telegram
+from telegram import InlineQueryResultArticle, ParseMode, InputTextMessageContent
 from cleverbot import Cleverbot
+from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 
 cb = Cleverbot()
 botName = "eliKAAS"
@@ -29,6 +33,36 @@ def help(bot, update):
     update.message.reply_text("""You don't know what to say? Here is a list!
 	
 	I don't have a list yet... 😢 Please come back later.""")
+
+
+
+def escape_markdown(text):
+    escape_chars = '\*_`\['
+    return re.sub(r'([%s])' % escape_chars, r'\\\1', text)
+
+
+def inlinequery(bot, update):
+    query = update.inline_query.query
+    results = list()
+
+    results.append(InlineQueryResultArticle(id=uuid4(),
+                                            title="Caps",
+                                            input_message_content=InputTextMessageContent(
+                                                query.upper())))
+
+    results.append(InlineQueryResultArticle(id=uuid4(),
+                                            title="Bold",
+                                            input_message_content=InputTextMessageContent(
+                                                "*%s*" % escape_markdown(query),
+                                                parse_mode=ParseMode.MARKDOWN)))
+
+    results.append(InlineQueryResultArticle(id=uuid4(),
+                                            title="Italic",
+                                            input_message_content=InputTextMessageContent(
+                                                "_%s_" % escape_markdown(query),
+                                                parse_mode=ParseMode.MARKDOWN)))
+
+    update.inline_query.answer(results)
 
 
 def mainMessagesHandler(bot, update):
@@ -68,12 +102,13 @@ def main():
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
-    # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
 
-    # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler([Filters.text], mainMessagesHandler))
+    
+    dp.add_handler(InlineQueryHandler(inlinequery))
+
 
     # log all errors
     dp.add_error_handler(error)
