@@ -75,7 +75,7 @@ def mainMessagesHandler(bot, update):
 
     print(update)
 
-    if "haha" in update.message.text or "HAHA" in update.message.text: or "Haha" in update.message.text:
+    if "haha" in update.message.text or "HAHA" in update.message.text or "Haha" in update.message.text:
         update.message.reply_text("hehehehe")
 
     if botName in update.message.text or botNameDownie in update.message.text or update['message']['chat']['type'] == 'private':
