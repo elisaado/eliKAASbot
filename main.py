@@ -30,9 +30,8 @@ def start(bot, update):
 
 
 def help(bot, update):
-    update.message.reply_text("""You don't know what to say? Here is a list!
-	
-	I don't have a list yet... 😢 Please come back later.""")
+    if botName in update.message.text or botNameDownie in update.message.text or update['message']['chat']['type'] == 'private':
+        update.message.reply_text("""You can say anything, just try it! 'Hey eliKAAS how are you?'""")
 
 
 
@@ -76,7 +75,7 @@ def mainMessagesHandler(bot, update):
     print(update)
 
     if "haha" in update.message.text or "HAHA" in update.message.text or "Haha" in update.message.text:
-        update.message.reply_text("hehehehe")
+        update.message.reply_text("LOL haha")
 
     if botName in update.message.text or botNameDownie in update.message.text or update['message']['chat']['type'] == 'private':
         if "top kek" in update.message.text:
