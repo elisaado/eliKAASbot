@@ -46,27 +46,9 @@ def inlinequery(bot, update):
     results = list()
 
     results.append(InlineQueryResultArticle(id=uuid4(),
-                                            title="Caps",
+                                            title="eliKAAS:",
                                             input_message_content=InputTextMessageContent(
                                                 query.upper())))
-
-    results.append(InlineQueryResultArticle(id=uuid4(),
-                                            title="Bold",
-                                            input_message_content=InputTextMessageContent(
-                                                "*%s*" % escape_markdown(query),
-                                                parse_mode=ParseMode.MARKDOWN)))
-
-    results.append(InlineQueryResultArticle(id=uuid4(),
-                                            title="Italic",
-                                            input_message_content=InputTextMessageContent(
-                                                "_%s_" % escape_markdown(query),
-                                                parse_mode=ParseMode.MARKDOWN)))
-
-    results.append(InlineQueryResultArticle(id=uuid4(),
-                                            title="Fixedeys",
-                                            input_message_content=InputTextMessageContent(
-                                                "`%s`" % escape_markdown(query),
-                                                parse_mode=ParseMode.MARKDOWN)))
 
     update.inline_query.answer(results)
 
