@@ -33,7 +33,8 @@ botNameFirstcap = botName.title()
 print("The name of the bot is {}, the ID of the owner is {}, random messages enabled: {}, Advertise group link enabled: {}, And the token is {}".format(botName, ownerId, randomMessagesEnabled, advertiseGroupLinkEnabled, token))
 
 if "yes" in randomMessagesEnabled :
-    randomMessages = randomMessages.split(",,")
+    print("checking messages")
+    randomMessagesList = randomMessages.split(",,")
 
 
 # This will stay here, until i know how json works :v
@@ -70,7 +71,8 @@ def help(bot, update):
 
 def randomMsg(bot, update):
     if botName in update.message.text or botNameDownie in update.message.text or botNameFirstcap in update.message.text or update['message']['chat']['type'] == 'private':
-        update.message.reply_text(random.choice(RandomMessages))
+        if "yes" in randomMessagesEnabled :
+            update.message.reply_text(random.choice(randomMessagesList))
 
 def escape_markdown(text):
     escape_chars = '\*_`\['
