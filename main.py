@@ -81,7 +81,7 @@ def inlinequery(bot, update):
     results = list()
 
     results.append(InlineQueryResultArticle(id=uuid4(), title="Caps", input_message_content=InputTextMessageContent(query.upper())))
-    results.append(InlineQueryResultArticle(id=uuid4(), title="Lowercase", input_message_content=InputTextMessageContent(query.down())))
+#    results.append(InlineQueryResultArticle(id=uuid4(), title="Lowercase", input_message_content=InputTextMessageContent(query.down())))
 
     update.inline_query.answer(results)
 
