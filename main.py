@@ -34,7 +34,6 @@ print("The name of the bot is {}, the ID of the owner is {}, random messages ena
 
 if "yes" in randomMessagesEnabled :
     randomMessages = randomMessages.split(",,")
-    print(randomMessages[1])
 
 
 # This will stay here, until i know how json works :v
