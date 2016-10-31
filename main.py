@@ -10,21 +10,52 @@ import telegram
 from telegram import InlineQueryResultArticle, ParseMode, InputTextMessageContent
 from cleverbot import Cleverbot
 from telegram.ext import Updater, InlineQueryHandler, CommandHandler
-from random import randint
+import random
+from operator import itemgetter 
+import json
 
 cb = Cleverbot()
 
-configFile = sys.argv[1]
 
-with open(configFile, 'r') as f:
-    file = f.readlines()
-    token = file[1].strip()
-    botName = file[3].strip()
-    ownerId = file[5].strip()
-    botNameDownie = botName.lower()
-    botNameFirstcap = botName.title()
-    f.close()
-    print("The token is {}, the name of the bot is {} and the ID of the owner is {}!".format(token, botName, ownerId))
+with open('config.json') as f:
+    config = json.load(f)
+
+token = config['token']
+botName = config['botName']
+ownerId = config['ownerId']
+randomMessagesEnabled = config['randomMessagesEnabled']
+randomMessages = config['randomMessages']
+advertiseGroupLinkEnabled = config['advertiseGroupLinkEnabled']
+groupLink = config['groupLink']
+botNameDownie = botName.lower()
+botNameFirstcap = botName.title()
+
+print("The name of the bot is {}, the ID of the owner is {}, random messages enabled: {}, Advertise group link enabled: {}, And the token is {}".format(botName, ownerId, randomMessagesEnabled, advertiseGroupLinkEnabled, token))
+
+if "yes" in randomMessagesEnabled :
+    randomMessages = randomMessages.split(",,")
+    print(randomMessages[1])
+
+
+# This will stay here, until i know how json works :v
+#with open(configFile, 'r') as f:
+#    lines = f.readlines()
+#    token = lines[1].strip()
+#    botName = lines[3].strip()
+#    ownerId = lines[5].strip()
+#    if 'yes' in lines[7]:
+#        RandMessages = []
+#        RandMessage1 = lines[9]
+#        RandMessage2 = lines[10]
+#        RandMessage3 = lines[11]
+#        RandMessages.append(RandMessage1.strip())
+#        RandMessages.append(RandMessage2.strip())
+#        RandMessages.append(RandMessage3.strip())
+#
+#    botNameDownie = botName.lower()
+#    botNameFirstcap = botName.title()
+#    f.close()
+#    print("The token is {}, the name of the bot is {} and the ID of the owner is {}!".format(token, botName, ownerId))
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -37,6 +68,10 @@ def start(bot, update):
 def help(bot, update):
     if botName in update.message.text or botNameDownie in update.message.text or botNameFirstcap in update.message.text or update['message']['chat']['type'] == 'private':
         update.message.reply_text("""You can say anything, just try it! 'Hey eliKAAS how are you?'""")
+
+def randomMsg(bot, update):
+    if botName in update.message.text or botNameDownie in update.message.text or botNameFirstcap in update.message.text or update['message']['chat']['type'] == 'private':
+        update.message.reply_text(random.choice(RandomMessages))
 
 def escape_markdown(text):
     escape_chars = '\*_`\['
@@ -62,7 +97,7 @@ def mainMessagesHandler(bot, update):
         update.message.reply_text("yes.")
 
     if "haha" in update.message.text.lower():
-        if randint(0,100) < 15:
+        if random.randint(0,100) < 15:
             update.message.reply_text("LOL haha")
 
     if botName in update.message.text or botNameDownie in update.message.text or botNameFirstcap in update.message.text or update['message']['chat']['type'] == 'private':
@@ -83,6 +118,7 @@ def main():
 
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler("random", randomMsg))
     dp.add_handler(MessageHandler([Filters.text], mainMessagesHandler))
     dp.add_handler(InlineQueryHandler(inlinequery))
     dp.add_error_handler(error)

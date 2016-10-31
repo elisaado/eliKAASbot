@@ -1,0 +1,9 @@
+{
+	"token" : "{your token here}",
+	"botName" : "{botname here}",
+	"ownerId" : "{Owner ID here}",
+	"randomMessagesEnabled" : "{fill in, 'yes' or 'no'}",
+	"randomMessages" : "{random messages should be formatted like this (TWO COMMA'S, witout spaces!): 'randomMessage1,,randomMessage2,,randomMessage3,,etc etc'}",
+	"advertiseGroupLinkEnabled" : "{yes or no}",
+	"groupLink" : "{Group link here, Only one is allowed}"
+}
