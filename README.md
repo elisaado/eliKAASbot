@@ -26,20 +26,23 @@ cd eliKAASbot
 Of course you can edit it with whatever editor you want but I find nano the simplest.
 
 ``` bash
-nano config.config
+nano config.json
 ```
-
-You can call the config file whatever you want but when you start the bot, give the config file as an argument like I will show you below
 
 #### Now you can start the bot with
 ``` bash
-python3 main.py "config.config" # that 'config.config' could be changed to everything but it must match the name you gave the config file
+python3 main.py
 ```
 
 ### The config file
-
-| Property            | Line number |
-|---------------------|-------------|
-| Bot Token           | 2           |
-| Name of the bot     | 4           |
-| The ID of the Owner | 6           |
+``` json
+{
+	"token" : "{your token here}",
+	"botName" : "{botname here}",
+	"ownerId" : "{Owner ID here}",
+	"randomMessagesEnabled" : "{fill in, 'yes' or 'no'}",
+	"randomMessages" : "{random messages should be formatted like this (TWO COMMA'S, witout spaces!): 'randomMessage1,,randomMessage2,,randomMessage3,,etc etc'}",
+	"advertiseGroupLinkEnabled" : "{yes or no}",
+	"groupLink" : "{Group link here, Only one is allowed}"
+}
+```
