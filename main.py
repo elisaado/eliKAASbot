@@ -74,6 +74,11 @@ def randomMsg(bot, update):
         if "yes" in randomMessagesEnabled :
             update.message.reply_text(random.choice(randomMessagesList))
 
+def advMsg(bot, update):
+    if botName in update.message.text or botNameDownie in update.message.text or botNameFirstcap in update.message.text or update['message']['chat']['type'] == 'private':
+    	if "yes" in advertiseGroupLinkEnabled :
+    		update.message.reply_text(groupLink)
+
 def escape_markdown(text):
     escape_chars = '\*_`\['
     return re.sub(r'([%s])' % escape_chars, r'\\\1', text)
@@ -120,6 +125,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("random", randomMsg))
+    dp.add_handler(CommandHandler("ad", advMsg))
     dp.add_handler(MessageHandler([Filters.text], mainMessagesHandler))
     dp.add_handler(InlineQueryHandler(inlinequery))
     dp.add_error_handler(error)
