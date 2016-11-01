@@ -66,10 +66,14 @@ def inlinequery(bot, update):
     query = update.inline_query.query
     results = list()
 
-    results.append(InlineQueryResultArticle(id=uuid4(), title="Caps", input_message_content=InputTextMessageContent(query.upper())))
-    results.append(InlineQueryResultArticle(id=uuid4(), title="Lowercase", input_message_content=InputTextMessageContent(query.lower())))
+    if len(update.inline_query.query) == 0:
+        pass
 
-    update.inline_query.answer(results)
+    else:
+    	results.append(InlineQueryResultArticle(id=uuid4(), title="Caps", input_message_content=InputTextMessageContent(query.upper())))
+    	results.append(InlineQueryResultArticle(id=uuid4(), title="Lowercase", input_message_content=InputTextMessageContent(query.lower())))
+
+    	update.inline_query.answer(results)
 
 def mainMessagesHandler(bot, update):
 
