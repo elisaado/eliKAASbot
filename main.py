@@ -55,8 +55,8 @@ def randomMsg(bot, update):
 
 def advMsg(bot, update):
     if botName in update.message.text or botNameDownie in update.message.text or botNameFirstcap in update.message.text or update['message']['chat']['type'] == 'private':
-    	if "yes" in advertiseGroupLinkEnabled :
-    		update.message.reply_text(groupLink)
+        if "yes" in advertiseGroupLinkEnabled :
+            update.message.reply_text(groupLink)
 
 def escape_markdown(text):
     escape_chars = '\*_`\['
@@ -70,10 +70,12 @@ def inlinequery(bot, update):
         pass
 
     else:
-    	results.append(InlineQueryResultArticle(id=uuid4(), title="Caps", input_message_content=InputTextMessageContent(query.upper())))
-    	results.append(InlineQueryResultArticle(id=uuid4(), title="Lowercase", input_message_content=InputTextMessageContent(query.lower())))
+        results.append(InlineQueryResultArticle(id=uuid4(), title="Caps", description=query.upper(), input_message_content=InputTextMessageContent(query.upper())))
+        results.append(InlineQueryResultArticle(id=uuid4(), title="Lowercase", description=query.lower(), input_message_content=InputTextMessageContent(query.lower())))
+        results.append(InlineQueryResultArticle(id=uuid4(), title="Title", description=query.title(), input_message_content=InputTextMessageContent(query.title())))
 
-    	update.inline_query.answer(results)
+        update.inline_query.answer(results)
+
 
 def mainMessagesHandler(bot, update):
 
