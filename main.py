@@ -36,27 +36,6 @@ if "yes" in randomMessagesEnabled :
     print("checking messages")
     randomMessagesList = randomMessages.split(",,")
 
-
-# This will stay here, until i know how json works :v
-#with open(configFile, 'r') as f:
-#    lines = f.readlines()
-#    token = lines[1].strip()
-#    botName = lines[3].strip()
-#    ownerId = lines[5].strip()
-#    if 'yes' in lines[7]:
-#        RandMessages = []
-#        RandMessage1 = lines[9]
-#        RandMessage2 = lines[10]
-#        RandMessage3 = lines[11]
-#        RandMessages.append(RandMessage1.strip())
-#        RandMessages.append(RandMessage2.strip())
-#        RandMessages.append(RandMessage3.strip())
-#
-#    botNameDownie = botName.lower()
-#    botNameFirstcap = botName.title()
-#    f.close()
-#    print("The token is {}, the name of the bot is {} and the ID of the owner is {}!".format(token, botName, ownerId))
-
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 logger = logging.getLogger(__name__)
@@ -88,7 +67,7 @@ def inlinequery(bot, update):
     results = list()
 
     results.append(InlineQueryResultArticle(id=uuid4(), title="Caps", input_message_content=InputTextMessageContent(query.upper())))
-#    results.append(InlineQueryResultArticle(id=uuid4(), title="Lowercase", input_message_content=InputTextMessageContent(query.down())))
+    results.append(InlineQueryResultArticle(id=uuid4(), title="Lowercase", input_message_content=InputTextMessageContent(query.lower())))
 
     update.inline_query.answer(results)
 
@@ -103,7 +82,7 @@ def mainMessagesHandler(bot, update):
         update.message.reply_text("yes.")
 
     if "haha" in update.message.text.lower():
-        if random.randint(0,100) < 15:
+        if random.randint(0,120) < 15:
             update.message.reply_text("LOL haha")
 
     if botName in update.message.text or botNameDownie in update.message.text or botNameFirstcap in update.message.text or update['message']['chat']['type'] == 'private':
