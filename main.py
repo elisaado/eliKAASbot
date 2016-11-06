@@ -73,6 +73,7 @@ def inlinequery(bot, update):
         results.append(InlineQueryResultArticle(id=uuid4(), title="Caps", description=query.upper(), input_message_content=InputTextMessageContent(query.upper())))
         results.append(InlineQueryResultArticle(id=uuid4(), title="Lowercase", description=query.lower(), input_message_content=InputTextMessageContent(query.lower())))
         results.append(InlineQueryResultArticle(id=uuid4(), title="Title", description=query.title(), input_message_content=InputTextMessageContent(query.title())))
+        results.append(InlineQueryResultArticle(id=uuid4(), title="Reverse", description=query[::-1], input_message_content=InputTextMessageContent(query[::-1])))
 
         update.inline_query.answer(results)
 
